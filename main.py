@@ -1,5 +1,6 @@
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import Response
 
 app = FastAPI()
 
@@ -13,7 +14,8 @@ app.add_middleware(
 @app.post("/mix")
 async def mix_audio(file: UploadFile = File(...)):
     content = await file.read()
-    return {
-        "message": "fichier reçu",
-        "size": len(content)
-    }
+
+    return Response(
+        content=content,
+        media_type="audio/mpeg"
+    )
