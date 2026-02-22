@@ -3,7 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-# Autorise le front (Lovable) à appeler l’API
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
